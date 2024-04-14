@@ -72,9 +72,7 @@ const MapComponent = ({ waterActive }) => {
     }, []);
 
     useEffect(() => {
-        console.log(mainMap, waterLayer);
         if (mainMap && waterLayer) {
-            console.log("aalo");
             if (waterActive) {
                 mainMap.removeLayer(waterLayer);
             } else {
