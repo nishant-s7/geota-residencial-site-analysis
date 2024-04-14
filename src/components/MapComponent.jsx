@@ -9,14 +9,15 @@ import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
 import { buffer } from "@turf/turf";
 
-import { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle } from "../helpers/StyleFunctions";
+import { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle, restaurantStyle } from "../helpers/StyleFunctions";
 
-const MapComponent = ({ waterActive, waterBuffer, schoolActive, schoolBuffer, hospitalActive, hospitalBuffer }) => {
+const MapComponent = ({ waterActive, waterBuffer, schoolActive, schoolBuffer, hospitalActive, hospitalBuffer, restaurantActive, restaurantBuffer }) => {
     const mapRef = useRef(null);
     const [mainMap, setMainMap] = useState(null);
     const [waterLayer, setWaterLayer] = useState(null);
     const [schoolLayer, setSchoolLayer] = useState(null);
     const [hospitalLayer, setHospitalLayer] = useState(null);
+    const [restaurantLayer, setRestaurantLayer] = useState(null);
 
     useEffect(() => {
         const regioncoord = [73.76845, 20.02329]; // region coordinates
@@ -150,6 +151,39 @@ const MapComponent = ({ waterActive, waterBuffer, schoolActive, schoolBuffer, ho
             }
         }
     }, [hospitalActive, hospitalBuffer]);
+
+
+       //Adding removing Restaurant layer
+       useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isRestaurantLayerPresent = mapLayers.getArray().includes(restaurantLayer);
+            if (isRestaurantLayerPresent) {
+                mainMap.removeLayer(restaurantLayer);
+            }
+    
+            if (restaurantActive) {
+                Promise.resolve(
+                    fetch("/data/Restaurants.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((restaurantData) => {
+                    const bufferedGeoJSON = buffer(restaurantData, restaurantBuffer, {
+                        units: "kilometers",
+                    });
+                    const restaurant = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(bufferedGeoJSON),
+                        }),
+                        style: restaurantStyle,
+                    });
+                    setRestaurantLayer(restaurant);
+                    mainMap.addLayer(restaurant);
+                });
+            }
+        }
+    }, [restaurantActive, restaurantBuffer]);
+    
     
 
 

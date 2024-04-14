@@ -1,0 +1,32 @@
+{
+"type": "FeatureCollection",
+"name": "Restuarants",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Name": "Olive Garden Restro" }, "geometry": { "type": "Point", "coordinates": [ 73.75805, 20.01041 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Name": "CCD" }, "geometry": { "type": "Point", "coordinates": [ 73.75716, 20.01213 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Name": "Tadka Tiffin Mess" }, "geometry": { "type": "Point", "coordinates": [ 73.7552, 20.01286 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Name": "Curry Leaves" }, "geometry": { "type": "Point", "coordinates": [ 73.75578, 20.01262 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Name": "RoadSide Wraps" }, "geometry": { "type": "Point", "coordinates": [ 73.75591, 20.01308 ] } },
+{ "type": "Feature", "properties": { "id": 11, "Name": "Serene Yard" }, "geometry": { "type": "Point", "coordinates": [ 73.76445, 20.00523 ] } },
+{ "type": "Feature", "properties": { "id": 12, "Name": "McDonald" }, "geometry": { "type": "Point", "coordinates": [ 73.76635, 20.00566 ] } },
+{ "type": "Feature", "properties": { "id": 13, "Name": "Sagar restro" }, "geometry": { "type": "Point", "coordinates": [ 73.76946, 20.00423 ] } },
+{ "type": "Feature", "properties": { "id": 14, "Name": "Frozen Factory" }, "geometry": { "type": "Point", "coordinates": [ 73.76868, 20.00329 ] } },
+{ "type": "Feature", "properties": { "id": 15, "Name": "Kulkarnis Pav Bhaji" }, "geometry": { "type": "Point", "coordinates": [ 73.78615, 20.00441 ] } },
+{ "type": "Feature", "properties": { "id": null, "Name": null }, "geometry": { "type": "Point", "coordinates": [ 73.7868, 20.00433 ] } },
+{ "type": "Feature", "properties": { "id": 16, "Name": "MCD" }, "geometry": { "type": "Point", "coordinates": [ 73.7868, 20.00433 ] } },
+{ "type": "Feature", "properties": { "id": 17, "Name": "omkars resto" }, "geometry": { "type": "Point", "coordinates": [ 73.78507, 20.00473 ] } },
+{ "type": "Feature", "properties": { "id": 18, "Name": "Babbi Da Dhaba" }, "geometry": { "type": "Point", "coordinates": [ 73.78391, 20.00496 ] } },
+{ "type": "Feature", "properties": { "id": 20, "Name": "khairnar khanaval" }, "geometry": { "type": "Point", "coordinates": [ 73.78386, 20.00482 ] } },
+{ "type": "Feature", "properties": { "id": 22, "Name": "panchvatti hotel" }, "geometry": { "type": "Point", "coordinates": [ 73.78596, 20.00562 ] } },
+{ "type": "Feature", "properties": { "id": 23, "Name": "pacnh restro" }, "geometry": { "type": "Point", "coordinates": [ 73.78594, 20.00539 ] } },
+{ "type": "Feature", "properties": { "id": 24, "Name": "bhola hotel" }, "geometry": { "type": "Point", "coordinates": [ 73.78596, 20.0053 ] } },
+{ "type": "Feature", "properties": { "id": 25, "Name": "KNS" }, "geometry": { "type": "Point", "coordinates": [ 73.78615, 20.00609 ] } },
+{ "type": "Feature", "properties": { "id": 26, "Name": "kartiks restro" }, "geometry": { "type": "Point", "coordinates": [ 73.78115, 20.01484 ] } },
+{ "type": "Feature", "properties": { "id": 27, "Name": "Nishants restro" }, "geometry": { "type": "Point", "coordinates": [ 73.78674, 20.01828 ] } },
+{ "type": "Feature", "properties": { "id": 29, "Name": "Manthans RoofTop Restaurant" }, "geometry": { "type": "Point", "coordinates": [ 73.77268, 20.00866 ] } },
+{ "type": "Feature", "properties": { "id": 31, "Name": "west restro" }, "geometry": { "type": "Point", "coordinates": [ 73.7937, 20.01301 ] } },
+{ "type": "Feature", "properties": { "id": 32, "Name": "Rogue Launge" }, "geometry": { "type": "Point", "coordinates": [ 73.79619, 20.01193 ] } },
+{ "type": "Feature", "properties": { "id": 33, "Name": "Hotel Shiv shahi" }, "geometry": { "type": "Point", "coordinates": [ 73.79346, 20.01858 ] } }
+]
+}

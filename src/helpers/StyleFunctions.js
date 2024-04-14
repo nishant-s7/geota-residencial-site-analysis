@@ -33,4 +33,13 @@ const hospitalStyle = (feature) => {
     });
 };
 
-export { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle };
+
+const restaurantStyle = (feature) => {
+    return new Style({
+        fill: new Fill({
+            color: "rgba(0, 200, 200, 0.5)",
+        }),
+    });
+};
+
+export { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle, restaurantStyle };

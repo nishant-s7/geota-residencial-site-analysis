@@ -8,11 +8,17 @@ const App = () => {
     const [schoolBuffer, setSchoolBuffer] = useState(0.1);
     const [hospitalActive, setHospitalActive] = useState(false);
     const [hospitalBuffer, setHospitalBuffer] = useState(0.1);
+    const [restaurantActive, setRestaurantActive] = useState(false);
+    const [restaurantBuffer, setRestaurantBuffer] = useState(0.1);
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <h1 style={{ marginBottom: "20px" }}>React OpenLayers Map</h1>
-            <MapComponent waterActive={waterActive} waterBuffer={waterBuffer} schoolActive={schoolActive} schoolBuffer={schoolBuffer} hospitalActive={hospitalActive} hospitalBuffer={hospitalBuffer} />
+            <MapComponent   waterActive={waterActive} waterBuffer={waterBuffer} 
+                            schoolActive={schoolActive} schoolBuffer={schoolBuffer} 
+                            hospitalActive={hospitalActive} hospitalBuffer={hospitalBuffer} 
+                            restaurantActive={restaurantActive} restaurantBuffer={restaurantBuffer}
+                            />
             <div style={{ marginTop: "20px"}}>
                 <table style={{ width: "500px", borderCollapse: "collapse" }}>
                     <thead>
@@ -95,6 +101,31 @@ const App = () => {
                                 />
                             </td>
                         </tr>
+                        <tr>
+                            <td style={{ textAlign: "left", paddingRight: "20px" }}>Restaurant</td>
+                            <td style={{ textAlign: "center", paddingRight: "20px" }}>
+                                <button
+                                    onClick={() => {
+                                        setRestaurantActive(!restaurantActive);
+                                    }}
+                                >
+                                    {restaurantActive ? "Hide" : "Show"}
+                                </button>
+                            </td>
+                            <td style={{ textAlign: "center" }}>
+                                <input
+                                    type="number"
+                                    onChange={(e) => {
+                                        setRestaurantBuffer(parseFloat(e.target.value));
+                                    }}
+                                    placeholder="Buffer Value"
+                                    value={restaurantBuffer}
+                                    step={0.1}
+                                    min={0}
+                                />
+                            </td>
+                        </tr>
+
 
                         {/* Add more rows for additional layers */}
                     </tbody>
