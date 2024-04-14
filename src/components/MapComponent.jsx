@@ -9,7 +9,9 @@ import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
 import { buffer } from "@turf/turf";
 
-const MapComponent = () => {
+import { mainAreaStyle, waterStyle } from "../helpers/StyleFunctions";
+
+const MapComponent = ({ waterActive }) => {
     const mapRef = useRef(null);
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const MapComponent = () => {
             }),
         });
 
-        // Load GeoJSON data for layer1 and layer2
+        // Load GeoJSON data for mainAreaLayer and layer2
         Promise.all([
             fetch("/data/main_area.geojson").then((response) =>
                 response.json()
@@ -35,62 +37,29 @@ const MapComponent = () => {
             fetch("/data/buffer_waterbodies.geojson").then((response) =>
                 response.json()
             ),
-        ]).then(([layer1Data, layer2Data]) => {
-            // Convert GeoJSON data to features
-            const layer1Features = new GeoJSON().readFeatures(layer1Data);
-            const layer2Features = new GeoJSON().readFeatures(layer2Data);
-
-            // Create VectorSources for layers
-            const layer1Source = new VectorSource({
-                features: layer1Features,
+        ]).then(([mainAreaData, waterData]) => {
+            // main_area
+            const mainAreaFeatures = new GeoJSON().readFeatures(mainAreaData);
+            const mainAreaSource = new VectorSource({
+                features: mainAreaFeatures,
             });
-            const layer2Source = new VectorSource({
-                features: layer2Features,
+            const mainAreaLayer = new VectorLayer({
+                source: mainAreaSource,
+                style: mainAreaStyle,
             });
+            map.addLayer(mainAreaLayer);
 
-            // Create VectorLayers for layers
-            const layer1 = new VectorLayer({
-                source: layer1Source,
-            });
-            const layer2 = new VectorLayer({
-                source: layer2Source,
-            });
-
-            map.addLayer(layer1);
-            // map.addLayer(layer2);
-
-            // Perform buffer operation using Turf.js
-            // const bufferedFeatures = layer2Features.map((feature) => {
-            //     console.log(feature.getGeometry());
-            //     const buffered = buffer(feature.getGeometry(), 1, {
-            //         units: "kilometers",
-            //     }); // Buffer by 10 kilometers
-            //     return new GeoJSON().readFeature(buffered);
-            // });
-
-            // // Create VectorSource for buffered layer
-            // const bufferedSource = new VectorSource({
-            //     features: bufferedFeatures,
-            // });
-
-            // // Create VectorLayer for buffered layer
-            // const bufferedLayer = new VectorLayer({
-            //     source: bufferedSource,
-            // });
-
-            const bufferedGeoJSON = buffer(layer2Data, 0.1, {
+            // buffer_waterbodies
+            const bufferedGeoJSON = buffer(waterData, 0.1, {
                 units: "kilometers",
             });
-
-            // Create a Vector Layer for the buffered polygon
-            const vectorLayer = new VectorLayer({
+            const waterLayer = new VectorLayer({
                 source: new VectorSource({
                     features: new GeoJSON().readFeatures(bufferedGeoJSON),
                 }),
+                style: waterStyle,
             });
-
-            // Add buffered layer to the map
-            map.addLayer(vectorLayer);
+            map.addLayer(waterLayer);
         });
 
         return () => {
