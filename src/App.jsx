@@ -7,8 +7,15 @@ const App = () => {
     return (
         <div>
             <h1>React OpenLayers Map</h1>
-            <MapComponent />
-            <button onClick={() => setWaterActive(true)}>Water</button>
+            <MapComponent waterActive={waterActive} />
+            <button
+                onClick={() => {
+                    console.log(waterActive);
+                    setWaterActive((prev) => !prev);
+                }}
+            >
+                Water
+            </button>
         </div>
     );
 };

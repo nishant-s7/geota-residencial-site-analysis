@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "ol/ol.css";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -13,6 +13,8 @@ import { mainAreaStyle, waterStyle } from "../helpers/StyleFunctions";
 
 const MapComponent = ({ waterActive }) => {
     const mapRef = useRef(null);
+    const [mainMap, setMainMap] = useState();
+    const [waterLayer, setWaterLayer] = useState();
 
     useEffect(() => {
         const map = new Map({
@@ -28,8 +30,9 @@ const MapComponent = ({ waterActive }) => {
                 zoom: 2,
             }),
         });
+        setMainMap(map);
 
-        // Load GeoJSON data for mainAreaLayer and layer2
+        // Load GeoJSON data
         Promise.all([
             fetch("/data/main_area.geojson").then((response) =>
                 response.json()
@@ -53,19 +56,32 @@ const MapComponent = ({ waterActive }) => {
             const bufferedGeoJSON = buffer(waterData, 0.1, {
                 units: "kilometers",
             });
-            const waterLayer = new VectorLayer({
+            const water = new VectorLayer({
                 source: new VectorSource({
                     features: new GeoJSON().readFeatures(bufferedGeoJSON),
                 }),
                 style: waterStyle,
             });
-            map.addLayer(waterLayer);
+            setWaterLayer(water);
+            map.addLayer(water);
         });
 
         return () => {
             map.dispose();
         };
     }, []);
+
+    useEffect(() => {
+        console.log(mainMap, waterLayer);
+        if (mainMap && waterLayer) {
+            console.log("aalo");
+            if (waterActive) {
+                mainMap.removeLayer(waterLayer);
+            } else {
+                mainMap.addLayer(waterLayer);
+            }
+        }
+    }, [waterActive]);
 
     return <div ref={mapRef} style={{ width: "100%", height: "400px" }}></div>;
 };
