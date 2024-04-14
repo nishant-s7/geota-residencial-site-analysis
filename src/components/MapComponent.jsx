@@ -17,7 +17,9 @@ const MapComponent = ({ waterActive }) => {
     const [waterLayer, setWaterLayer] = useState();
 
     useEffect(() => {
+        const regioncoord =   [73.76845, 20.02329]; // region coordinates
         const map = new Map({
+
             target: mapRef.current,
             layers: [
                 new TileLayer({
@@ -25,9 +27,9 @@ const MapComponent = ({ waterActive }) => {
                 }),
             ],
             view: new View({
-                projection: "EPSG:4326",
-                center: [0, 0],
-                zoom: 2,
+                projection : "EPSG:4326",
+                center: regioncoord,
+                zoom: 13.5,
             }),
         });
         setMainMap(map);
