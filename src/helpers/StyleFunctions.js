@@ -17,4 +17,20 @@ const waterStyle = (feature) => {
     });
 };
 
-export { mainAreaStyle, waterStyle };
+const schoolStyle = (feature) => {
+    return new Style({
+        fill: new Fill({
+            color: "rgba(200, 0, 255, 0.5)",
+        }),
+    });
+};
+
+const hospitalStyle = (feature) => {
+    return new Style({
+        fill: new Fill({
+            color: "rgba(0, 100, 100, 0.5)",
+        }),
+    });
+};
+
+export { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle };

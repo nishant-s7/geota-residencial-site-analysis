@@ -9,12 +9,14 @@ import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
 import { buffer } from "@turf/turf";
 
-import { mainAreaStyle, waterStyle } from "../helpers/StyleFunctions";
+import { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle } from "../helpers/StyleFunctions";
 
-const MapComponent = ({ waterActive, setWaterActive, waterBuffer }) => {
+const MapComponent = ({ waterActive, waterBuffer, schoolActive, schoolBuffer, hospitalActive, hospitalBuffer }) => {
     const mapRef = useRef(null);
     const [mainMap, setMainMap] = useState(null);
     const [waterLayer, setWaterLayer] = useState(null);
+    const [schoolLayer, setSchoolLayer] = useState(null);
+    const [hospitalLayer, setHospitalLayer] = useState(null);
 
     useEffect(() => {
         const regioncoord = [73.76845, 20.02329]; // region coordinates
@@ -56,7 +58,7 @@ const MapComponent = ({ waterActive, setWaterActive, waterBuffer }) => {
     }, []);
 
 
-
+    //Adding and removing WaterBody Layer
     useEffect(()=>{
         if(mainMap){
             const mapLayers = mainMap.getLayers();
@@ -86,6 +88,72 @@ const MapComponent = ({ waterActive, setWaterActive, waterBuffer }) => {
             }
         }
     },[waterActive, waterBuffer]);
+
+    //Adding removing School layer
+    useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isSchoolLayerPresent = mapLayers.getArray().includes(schoolLayer);
+            if (isSchoolLayerPresent) {
+                mainMap.removeLayer(schoolLayer);
+            }
+    
+            if (schoolActive) {
+                Promise.resolve(
+                    fetch("/data/schools.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((schoolData) => {
+                    const bufferedGeoJSON = buffer(schoolData, schoolBuffer, {
+                        units: "kilometers",
+                    });
+                    const school = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(bufferedGeoJSON),
+                        }),
+                        style: schoolStyle,
+                    });
+                    setSchoolLayer(school);
+                    mainMap.addLayer(school);
+                });
+            }
+        }
+    }, [schoolActive, schoolBuffer]);
+    
+    //Adding removing Hospital layer
+    useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isHospitalLayerPresent = mapLayers.getArray().includes(hospitalLayer);
+            if (isHospitalLayerPresent) {
+                mainMap.removeLayer(hospitalLayer);
+            }
+    
+            if (hospitalActive) {
+                Promise.resolve(
+                    fetch("/data/Hospitals.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((hospitalData) => {
+                    const bufferedGeoJSON = buffer(hospitalData, hospitalBuffer, {
+                        units: "kilometers",
+                    });
+                    const hospital = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(bufferedGeoJSON),
+                        }),
+                        style: hospitalStyle,
+                    });
+                    setHospitalLayer(hospital);
+                    mainMap.addLayer(hospital);
+                });
+            }
+        }
+    }, [hospitalActive, hospitalBuffer]);
+    
+
+
+
 
 
     return <div ref={mapRef} style={{ width: "100%", height: "80vh" }}></div>;
