@@ -15,6 +15,17 @@ import {
     schoolStyle,
     hospitalStyle,
     restaurantStyle,
+    highwayStyle,
+    industryStyle,
+    marketStyle,
+    picnicSpotStyle,
+    serviceStyle,
+    theatreStyle,
+    templeStyle,
+    petrolPumpStyle,
+    mallStyle,
+    stationStyle,
+    gardenStyle,
 } from "../helpers/StyleFunctions";
 
 const MapComponent = ({
@@ -42,6 +53,12 @@ const MapComponent = ({
     templeBuffer,
     petrolPumpActive,
     petrolPumpBuffer,
+    mallActive,
+    mallBuffer,
+    stationActive,
+    stationBuffer,
+    gardenActive,
+    gardenBuffer,
 }) => {
     const mapRef = useRef(null);
     const [mainMap, setMainMap] = useState(null);
@@ -57,6 +74,9 @@ const MapComponent = ({
     const [theatreLayer, setTheatreLayer] = useState(null);
     const [templeLayer, setTempleLayer] = useState(null);
     const [petrolPumpLayer, setPetrolPumpLayer] = useState(null);
+    const [mallLayer, setMallLayer] = useState(null);
+    const [stationLayer, setStationLayer] = useState(null);
+    const [gardenLayer, setGardenLayer] = useState(null);
 
     useEffect(() => {
         const regioncoord = [73.785, 20.01329]; // region coordinates
@@ -271,7 +291,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: highwayStyle,
                     });
                     setHighwayLayer(highway);
                     mainMap.addLayer(highway);
@@ -310,7 +330,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: industryStyle,
                     });
                     setIndustryLayer(industry);
                     mainMap.addLayer(industry);
@@ -345,7 +365,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: marketStyle,
                     });
                     setMarketLayer(market);
                     mainMap.addLayer(market);
@@ -384,7 +404,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: picnicSpotStyle,
                     });
                     setPicnicSpotLayer(picnicSpot);
                     mainMap.addLayer(picnicSpot);
@@ -419,7 +439,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: serviceStyle,
                     });
                     setServiceLayer(service);
                     mainMap.addLayer(service);
@@ -454,7 +474,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: theatreStyle,
                     });
                     setTheatreLayer(theatre);
                     mainMap.addLayer(theatre);
@@ -489,7 +509,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: templeStyle,
                     });
                     setTempleLayer(temple);
                     mainMap.addLayer(temple);
@@ -528,7 +548,7 @@ const MapComponent = ({
                                 bufferedGeoJSON
                             ),
                         }),
-                        style: restaurantStyle,
+                        style: petrolPumpStyle,
                     });
                     setPetrolPumpLayer(petrolPump);
                     mainMap.addLayer(petrolPump);
@@ -537,7 +557,119 @@ const MapComponent = ({
         }
     }, [petrolPumpActive, petrolPumpBuffer]);
 
-    return <div ref={mapRef} style={{ width: "100%", height: "80vh" }}></div>;
+    //Adding removing Mall layer
+    useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isMallLayerPresent = mapLayers.getArray().includes(mallLayer);
+            if (isMallLayerPresent) {
+                mainMap.removeLayer(mallLayer);
+            }
+
+            if (mallActive) {
+                Promise.resolve(
+                    fetch("/data/malls.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((mallData) => {
+                    const bufferedGeoJSON = buffer(mallData, mallBuffer, {
+                        units: "kilometers",
+                    });
+                    const mall = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(
+                                bufferedGeoJSON
+                            ),
+                        }),
+                        style: mallStyle,
+                    });
+                    setMallLayer(mall);
+                    mainMap.addLayer(mall);
+                });
+            }
+        }
+    }, [mallActive, mallBuffer]);
+
+    //Adding removing Station layer
+    useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isStationLayerPresent = mapLayers
+                .getArray()
+                .includes(stationLayer);
+            if (isStationLayerPresent) {
+                mainMap.removeLayer(stationLayer);
+            }
+
+            if (stationActive) {
+                Promise.resolve(
+                    fetch("/data/station.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((stationData) => {
+                    const bufferedGeoJSON = buffer(stationData, stationBuffer, {
+                        units: "kilometers",
+                    });
+                    const station = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(
+                                bufferedGeoJSON
+                            ),
+                        }),
+                        style: stationStyle,
+                    });
+                    setStationLayer(station);
+                    mainMap.addLayer(station);
+                });
+            }
+        }
+    }, [stationActive, stationBuffer]);
+
+    //Adding removing Garden layer
+    useEffect(() => {
+        if (mainMap) {
+            const mapLayers = mainMap.getLayers();
+            const isGardenLayerPresent = mapLayers
+                .getArray()
+                .includes(gardenLayer);
+            if (isGardenLayerPresent) {
+                mainMap.removeLayer(gardenLayer);
+            }
+
+            if (gardenActive) {
+                Promise.resolve(
+                    fetch("/data/gardens.geojson").then((response) =>
+                        response.json()
+                    )
+                ).then((gardenData) => {
+                    const bufferedGeoJSON = buffer(gardenData, gardenBuffer, {
+                        units: "kilometers",
+                    });
+                    const garden = new VectorLayer({
+                        source: new VectorSource({
+                            features: new GeoJSON().readFeatures(
+                                bufferedGeoJSON
+                            ),
+                        }),
+                        style: gardenStyle,
+                    });
+                    setGardenLayer(garden);
+                    mainMap.addLayer(garden);
+                });
+            }
+        }
+    }, [gardenActive, gardenBuffer]);
+
+    return (
+        <div
+            ref={mapRef}
+            style={{
+                width: "100%",
+                height: "630px",
+                border: "3px solid #826c3e",
+            }}
+        ></div>
+    );
 };
 
 export default MapComponent;
