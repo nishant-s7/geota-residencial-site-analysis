@@ -33,7 +33,6 @@ const hospitalStyle = (feature) => {
     });
 };
 
-
 const restaurantStyle = (feature) => {
     return new Style({
         fill: new Fill({
@@ -42,4 +41,28 @@ const restaurantStyle = (feature) => {
     });
 };
 
-export { mainAreaStyle, waterStyle, schoolStyle, hospitalStyle, restaurantStyle };
+const greenStyle = (feature) => {
+    return new Style({
+        fill: new Fill({
+            color: "rgba(0, 255, 0, 0.5)",
+        }),
+    });
+};
+
+const redStyle = (feature) => {
+    return new Style({
+        fill: new Fill({
+            color: "rgba(255, 0, 0, 0.5)",
+        }),
+    });
+};
+
+export {
+    mainAreaStyle,
+    waterStyle,
+    schoolStyle,
+    hospitalStyle,
+    restaurantStyle,
+    greenStyle,
+    redStyle,
+};

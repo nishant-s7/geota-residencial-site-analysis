@@ -1,0 +1,27 @@
+{
+"type": "FeatureCollection",
+"name": "temple",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Temple": "Birbaba mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.77067, 20.00375 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Temple": "Sai baba Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.78595, 20.01412 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Temple": "shankar bhagwan Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.78564, 20.01385 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Temple": "Sai Baba Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.78719, 20.01294 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Temple": "Hanuman Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.78779, 20.01388 ] } },
+{ "type": "Feature", "properties": { "id": 7, "Temple": "Devi Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.78877, 20.01235 ] } },
+{ "type": "Feature", "properties": { "id": 8, "Temple": "Mata Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.79193, 20.00793 ] } },
+{ "type": "Feature", "properties": { "id": 9, "Temple": "Ram Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.79188, 20.0072 ] } },
+{ "type": "Feature", "properties": { "id": 10, "Temple": "Shankarji Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.79272, 20.00761 ] } },
+{ "type": "Feature", "properties": { "id": 11, "Temple": "Kalaram Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.79549, 20.00692 ] } },
+{ "type": "Feature", "properties": { "id": 12, "Temple": "Sri Kala Rama Swamy Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.79501, 20.00688 ] } },
+{ "type": "Feature", "properties": { "id": 13, "Temple": "Amar Dham" }, "geometry": { "type": "Point", "coordinates": [ 73.79594, 20.00121 ] } },
+{ "type": "Feature", "properties": { "id": 14, "Temple": "Rameshwara Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.7933, 20.00573 ] } },
+{ "type": "Feature", "properties": { "id": 15, "Temple": "Namdeo Vitthal Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.76592, 20.00546 ] } },
+{ "type": "Feature", "properties": { "id": 16, "Temple": "SaiBaba Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.75901, 20.00691 ] } },
+{ "type": "Feature", "properties": { "id": 17, "Temple": "Datta Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.75827, 20.00568 ] } },
+{ "type": "Feature", "properties": { "id": 18, "Temple": "Masubaba Mandir" }, "geometry": { "type": "Point", "coordinates": [ 73.75687, 20.00657 ] } },
+{ "type": "Feature", "properties": { "id": 19, "Temple": "Laxmi Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.75551, 20.0056 ] } },
+{ "type": "Feature", "properties": { "id": 20, "Temple": "RamMandir" }, "geometry": { "type": "Point", "coordinates": [ 73.75201, 20.00895 ] } },
+{ "type": "Feature", "properties": { "id": 21, "Temple": "Shri Mahalakshmi Temple" }, "geometry": { "type": "Point", "coordinates": [ 73.74746, 20.01185 ] } }
+]
+}

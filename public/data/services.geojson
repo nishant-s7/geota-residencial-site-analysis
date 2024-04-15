@@ -1,0 +1,21 @@
+{
+"type": "FeatureCollection",
+"name": "services",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Name": "Sakarwada Police Station", "Type": "Police Station" }, "geometry": { "type": "Point", "coordinates": [ 73.77972, 20.00564 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Name": "Rajiv Gandhi Bhavan", "Type": "Hall" }, "geometry": { "type": "Point", "coordinates": [ 73.77552, 20.00033 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Name": "Jankalyan Cooperative Bank", "Type": "Bank" }, "geometry": { "type": "Point", "coordinates": [ 73.76886, 20.00449 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Name": "ICICI Bank", "Type": "Bank" }, "geometry": { "type": "Point", "coordinates": [ 73.76188, 20.00608 ] } },
+{ "type": "Feature", "properties": { "id": 6, "Name": "College Road Post Office", "Type": "Post Office" }, "geometry": { "type": "Point", "coordinates": [ 73.76178, 20.00613 ] } },
+{ "type": "Feature", "properties": { "id": 7, "Name": "Sant Dnyaneshwar Library", "Type": "Library" }, "geometry": { "type": "Point", "coordinates": [ 73.75833, 20.00544 ] } },
+{ "type": "Feature", "properties": { "id": 9, "Name": "Nashik Court", "Type": "Court" }, "geometry": { "type": "Point", "coordinates": [ 73.78228, 20.00218 ] } },
+{ "type": "Feature", "properties": { "id": 10, "Name": "Samarth Bank", "Type": "Bank" }, "geometry": { "type": "Point", "coordinates": [ 73.78719, 20.00335 ] } },
+{ "type": "Feature", "properties": { "id": 11, "Name": "Bank", "Type": "Bank" }, "geometry": { "type": "Point", "coordinates": [ 73.7873, 20.00208 ] } },
+{ "type": "Feature", "properties": { "id": 12, "Name": "Water Supply", "Type": "Water Supply" }, "geometry": { "type": "Point", "coordinates": [ 73.79244, 20.0083 ] } },
+{ "type": "Feature", "properties": { "id": 14, "Name": "Amusement Park", "Type": "Entertainment" }, "geometry": { "type": "Point", "coordinates": [ 73.76702, 20.01411 ] } },
+{ "type": "Feature", "properties": { "id": 13, "Name": "Amusement Park", "Type": "Amusement Park" }, "geometry": { "type": "Point", "coordinates": [ 73.77592, 20.01869 ] } },
+{ "type": "Feature", "properties": { "id": 15, "Name": "Police Station", "Type": "Police Station" }, "geometry": { "type": "Point", "coordinates": [ 73.79393, 20.01448 ] } },
+{ "type": "Feature", "properties": { "id": 16, "Name": "Bank", "Type": "Bank" }, "geometry": { "type": "Point", "coordinates": [ 73.79635, 20.01242 ] } }
+]
+}
